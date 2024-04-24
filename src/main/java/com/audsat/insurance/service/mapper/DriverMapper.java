@@ -13,7 +13,7 @@ public class DriverMapper {
     private CarMapper carMapper;
 
     public Driver toEntity(DriverRequestDTO driver, Car car) {
-        return new Driver(driver, car);
+        return new Driver(driver);
     }
 
 }

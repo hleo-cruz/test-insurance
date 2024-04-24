@@ -14,7 +14,7 @@ public class InsuranceController {
     private InsuranceService service;
 
     @GetMapping
-    public void apply() {
-        service.apply();
+    public void fetchInsuranceAnalysis() {
+        service.fetchInsuranceAnalysis();
     }
 }

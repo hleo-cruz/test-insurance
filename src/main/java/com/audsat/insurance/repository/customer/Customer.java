@@ -2,6 +2,7 @@ package com.audsat.insurance.repository.customer;
 
 import com.audsat.insurance.dto.request.CustomerRequestDTO;
 import com.audsat.insurance.repository.driver.Driver;
+import com.audsat.insurance.repository.proposal.Proposal;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -26,8 +26,6 @@ public class Car {
     private String modelYear;
     @Column(name = "fipe_value")
     private Double fipeValue;
-    @ManyToMany(mappedBy = "cars")
-    private List<Driver> drivers;
 
     public Car(CarRequestDTO dto) {
         this.model = dto.getModel();
