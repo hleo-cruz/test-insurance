@@ -5,4 +5,3 @@ create table "CAR_DRIVERS"
     car_id Integer not null,
     is_main_driver Boolean
 );
-

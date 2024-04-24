@@ -1,47 +1,44 @@
 package com.audsat.insurance.service;
 
-import com.audsat.insurance.dto.request.ProposalDTO;
+import com.audsat.insurance.dto.request.CustomerRequestDTO;
+import com.audsat.insurance.dto.request.ProposalRequestDTO;
+import com.audsat.insurance.repository.cars.Car;
 import com.audsat.insurance.repository.customer.Customer;
-import com.audsat.insurance.repository.customer.CustomerRepository;
-import com.audsat.insurance.repository.proposal.Proposal;
-import com.audsat.insurance.repository.proposal.ProposalRepository;
-import com.audsat.insurance.service.event.AnalisysProposalEventPublisher;
-import com.audsat.insurance.service.mapper.ProposalMapper;
+import com.audsat.insurance.repository.driver.Driver;
+import com.audsat.insurance.service.mapper.CarMapper;
+import com.audsat.insurance.service.mapper.CustomerMapper;
+import com.audsat.insurance.service.mapper.DriverMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProposalService {
 
     @Autowired
-    private ProposalMapper mapper;
+    private CarMapper carMapper;
 
     @Autowired
-    private ProposalRepository repository;
+    private DriverMapper driverMapper;
 
     @Autowired
-    private AnalisysProposalEventPublisher eventPublisher;
+    private CustomerMapper customerMapper;
 
-    public void register(final ProposalDTO proposalDTO) {
+    @Autowired
+    private CustomerService customerService;
+
+    public void register(final ProposalRequestDTO proposal) {
 
         try {
-            final Proposal proposalToSave = mapper.toEntity(Optional.of(proposalDTO));
-            final Proposal proposal = repository.save(proposalToSave);
-            eventPublisher.publish(proposal.getId());
+
+            final Car car = carMapper.toEntityFromProposal(proposal);
+            List<CustomerRequestDTO> customers = proposal.getCustomers();
+           customerService.register(customers, car);
+
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-    }
-
-    public ProposalDTO findById(final Long proposalId) {
-
-        try {
-            final Optional<Proposal> proposal = repository.findById(proposalId);
-            return mapper.toDto(proposal);
-        } catch (Exception ex) {
-            throw new RuntimeException();
         }
     }
 }

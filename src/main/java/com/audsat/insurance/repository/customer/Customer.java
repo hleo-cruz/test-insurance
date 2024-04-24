@@ -1,14 +1,13 @@
 package com.audsat.insurance.repository.customer;
 
+import com.audsat.insurance.dto.request.CustomerRequestDTO;
 import com.audsat.insurance.repository.driver.Driver;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,4 +23,10 @@ public class Customer {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id")
     private Driver driver;
+
+    public Customer(CustomerRequestDTO dto, Driver driver) {
+        this.name = dto.getCustomerName();
+        this.driver = driver;
+    }
+
 }

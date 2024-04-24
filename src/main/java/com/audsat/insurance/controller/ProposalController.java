@@ -1,6 +1,6 @@
 package com.audsat.insurance.controller;
 
-import com.audsat.insurance.dto.request.ProposalDTO;
+import com.audsat.insurance.dto.request.ProposalRequestDTO;
 import com.audsat.insurance.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ public class ProposalController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public void register(@RequestBody ProposalDTO proposal) {
+    public void register(@RequestBody ProposalRequestDTO proposal) {
         service.register(proposal);
     }
 }

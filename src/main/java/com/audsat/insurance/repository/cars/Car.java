@@ -1,9 +1,9 @@
 package com.audsat.insurance.repository.cars;
 
+import com.audsat.insurance.dto.request.CarRequestDTO;
 import com.audsat.insurance.repository.driver.Driver;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cars")
@@ -30,4 +29,10 @@ public class Car {
     @ManyToMany(mappedBy = "cars")
     private List<Driver> drivers;
 
+    public Car(CarRequestDTO dto) {
+        this.model = dto.getModel();
+        this.manufacturer = dto.getManufacturer();
+        this.modelYear = dto.getYear();
+        this.fipeValue = dto.getFipeValue().doubleValue();
+    }
 }
