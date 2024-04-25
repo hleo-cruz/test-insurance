@@ -16,6 +16,8 @@ public class Claim {
     private Long id;
     @Column(name = "driver_id")
     private Long driverId;
+    @Column(name = "driver_id")
+    private Long carId;
     @Column(name = "event_date")
     private Date eventDate;
 }

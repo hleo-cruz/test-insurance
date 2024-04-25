@@ -1,7 +1,7 @@
 package com.audsat.insurance.dto.response;
 
-import com.audsat.insurance.dto.request.CarRequestDTO;
-import com.audsat.insurance.dto.request.CustomerRequestDTO;
+import com.audsat.insurance.dto.response.CarResponseDTO;
+import com.audsat.insurance.dto.response.CustomerResponseDTO;
 import com.audsat.insurance.repository.proposal.Proposal;
 import lombok.Getter;
 

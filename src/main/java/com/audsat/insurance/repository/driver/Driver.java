@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -22,7 +23,7 @@ public class Driver {
     private Long id;
     private String document;
     @Column(name = "driver_birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
     @Column(name = "is_main_driver")
     private Boolean isMainDriver;
 
